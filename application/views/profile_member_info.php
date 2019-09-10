@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
                         <label style="color: #1b29ff;">ที่อยู่ :</label>
-                        <label ><?php echo $row->address1;?> <?php echo $row->address2;?> <?php echo $row->address3;?></label>
+                        <label ><?php echo $row->address1;?> <?php echo $row->address2;?> <?php echo $row->province_name;?> <?php echo $row->postcode;?></label>
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
                         <label style="color: #1b29ff;">อีเมลล์ :</label>

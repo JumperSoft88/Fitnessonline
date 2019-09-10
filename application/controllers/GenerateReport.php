@@ -1,12 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mgi
- * Date: 25/7/2018 AD
- * Time: 03:48
- */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class GenerateReport
+class GenerateReport extends CI_Controller
 {
+    public function __construct() {
+        parent::__construct();
+
+        $this->load->model('info_model');
+    }
+
+
+
+
 
 }

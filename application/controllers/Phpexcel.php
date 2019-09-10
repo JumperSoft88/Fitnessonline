@@ -6,13 +6,13 @@ class Phpexcel extends Front_end {
 
 	function __construct(){
 	  parent::__construct();
-		$this->load->model('phpexcel_model');
+		$this->load->model('info_model');
 
     }
 
 	function index()
 	{
-		$data['users'] = $this->phpexcel_model->get_users();
+		$data['users'] = $this->info_model->exportInfo_model();
 
 		$this->view('content/phpexcel', $data);
 	}
@@ -20,7 +20,7 @@ class Phpexcel extends Front_end {
 
 	public function download()  {
 
-		$subscribers = $this->phpexcel_model->get_users();
+		$subscribers = $this->info_model->exportInfo_model();
 
 		require_once APPPATH . '/third_party/Phpexcel/Bootstrap.php';
 
