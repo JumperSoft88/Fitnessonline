@@ -122,7 +122,12 @@ class Info extends CI_Controller {
 
         $provinceName = $this->info_model->searchProvinceById($_POST['province_id']);
 
-
+        if(isset($provinceName[0]->province)){
+            $provinceName = $provinceName[0]->province;
+        }else{
+            $provinceName = '';
+        }
+        
         $data = $arrayName = array(
             'frist_name' => $_POST['frist_name'],
             'last_name' =>  $_POST['last_name'],
@@ -132,7 +137,7 @@ class Info extends CI_Controller {
             'address1' =>  $_POST['address1'],
             'address2' =>  $_POST['address2'],
             'province_id' =>  $_POST['province_id'],
-            'province_name' =>  $provinceName[0]->province,
+            'province_name' =>  $provinceName,
             'postcode' =>  $_POST['postcode'],
             'telephone1' =>  $_POST['telephone1'],
             'telephone2' =>  $_POST['telephone2'],

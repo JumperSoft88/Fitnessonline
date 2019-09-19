@@ -101,11 +101,11 @@
                         <div class="col-md-8">
                             
                             <label class="radio-inline" for="price" >
-                                <input type="radio" name="price" id="price" value="2,000">
+                                <input type="radio" name="price" id="price" value="3,999">
                                 PT_set A : ราย 6 เดือน 3,999 บาท
                             </label>
                             <label class="radio-inline" for="price" >
-                                <input type="radio" name="price" id="price" value="2,000">
+                                <input type="radio" name="price" id="price" value="5,999">
                                 PT_set B : รายปี 5,999 บาท
                             </label>
                         </div>

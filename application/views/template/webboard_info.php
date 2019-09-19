@@ -7,8 +7,9 @@
 
         <th style="background-image: url(https://cdn.yborcityonline.com/wp-content/uploads/2016/10/Red-Brick-Background-01-Copy-1170x1500.jpg);" width="5%">Status</th>
         <th style="background-image: url(https://cdn.yborcityonline.com/wp-content/uploads/2016/10/Red-Brick-Background-01-Copy-1170x1500.jpg);" width="10%"><?=label("strRead"); ?></th>
-        <th style="background-image: url(https://cdn.yborcityonline.com/wp-content/uploads/2016/10/Red-Brick-Background-01-Copy-1170x1500.jpg);" width="10%"><?=label("strAnswer"); ?></th>
+    <!--    <th style="background-image: url(https://cdn.yborcityonline.com/wp-content/uploads/2016/10/Red-Brick-Background-01-Copy-1170x1500.jpg);" width="10%"><?=label("strAnswer"); ?></th>
         <th style="background-image: url(https://cdn.yborcityonline.com/wp-content/uploads/2016/10/Red-Brick-Background-01-Copy-1170x1500.jpg);" width="10%"><?=label("strCreated"); ?></th>
+    -->
     </tr>
 </thead>
 
@@ -51,19 +52,18 @@
         <?php if(isset($row->status_login) and $row->status_login == 'on'){
 
          ?>
-            <th style="text-align: center"><img src="<?php echo base_url();?>/assets/img/16dot-green.gif" /></th>
+            <th style="text-align: center" >รับงาน</th>
 
         <?php
         }else{ ?>
-            <th style="text-align: center"><img src="<?php echo base_url();?>/assets/img/Dotred.png" /></th>
+            <th style="text-align: center">ปิดรับงาน</th>
         <?php
         }
         ?>
 
         <!--th style="background-image: url(https://cdn.yborcityonline.com/wp-content/uploads/2016/10/Red-Brick-Background-01-Copy-1170x1500.jpg);">vote</th-->
         <th><?php echo $row->view;?></th>
-        <th><?php echo $row->reply;?></th>
-        <th><?php echo $row->created;?></th>
+
     </tr>
 <?php $index++;}}?>
 

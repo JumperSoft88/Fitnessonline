@@ -75,7 +75,8 @@
 
 
 
-<?php if (isset($_SESSION['member_type'])) {  if($_SESSION['member_type'] == 'trainer'){ ?>
+<?php if (isset($_SESSION['member_type'])) {  
+    if($_SESSION['member_type'] == 'trainer'){ ?>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#myModal").modal('show');
@@ -104,7 +105,7 @@
 <nav class="navbar navbar-inverse" style="background-image: url(<?php echo base_url(); ?>assets/img/back_header.png)">
     <?php include("template/header_profile.php") ?>
 </nav>
-
+<!-- -->
 <div class="modal hide fade" id="myModal">
     <div class="modal-header">
         <a class="close" data-dismiss="modal">×</a>
@@ -131,9 +132,9 @@
 </div>
 
 <div class="container">
-    <h2>Modal Example</h2>
+  <!--  <h2>Modal Example</h2> -->
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+ <!--   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
