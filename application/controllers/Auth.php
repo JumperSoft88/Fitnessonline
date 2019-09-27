@@ -66,15 +66,14 @@ class Auth extends CI_Controller
                         $_SESSION['member_type'] = $user_data[0]->member_type;
                         $_SESSION['email'] = $user_data[0]->email;
 
-                        $_SESSION['type'] = $user_data[0]->member_type;
+                        $_SESSION['type'] = $user_data[0]->member_type; 
 
                         $_SESSION['first_login'] = TRUE;
 
-                        //echo $_SESSION['member_type'];
-
+                        //echo $_SESSION['member_type']; 
 
                         $id= $user_data[0]->member_id;
-
+ 
 
                      //   if($_SESSION['member_type'] == 'trainer'){
 
@@ -83,8 +82,8 @@ class Auth extends CI_Controller
                       //      );
 
                      //       $this->auth_model->update_status_logon($username,$data);
-                     //   }
-
+                     //   } 
+                         
                         $this->session->set_flashdata("success","You are logged in");
 
 
@@ -102,7 +101,11 @@ class Auth extends CI_Controller
                             || $_SESSION['member_type'] == 'ftcenter'
                             || $_SESSION['member_type'] == 'member'){
 
+<<<<<<< HEAD
                         redirect("info/profile","refresh");  
+=======
+                        redirect("info/profile","refresh");
+>>>>>>> 22faa46959206e06f106fa7ddde96d1d435c3f2a
                         }else{
                             echo date('Y-m-d H:i:s');
                             redirect("","refresh");
@@ -292,6 +295,7 @@ class Auth extends CI_Controller
                         $from_email = "info@fitnessonline.co.th";
 
                      
+<<<<<<< HEAD
                         $user_data = $this->auth_model->get_member($_POST['member_username']);
 
                         $id= $user_data[0]->member_id;
@@ -304,6 +308,8 @@ class Auth extends CI_Controller
                             $price = 'PT_set B : รายปี 5,999 บาท';
                         }
 
+=======
+>>>>>>> 22faa46959206e06f106fa7ddde96d1d435c3f2a
                         //Load email library
                         $this->load->library('email');
 
@@ -316,6 +322,7 @@ class Auth extends CI_Controller
                         $message .= '            <div style=\"font-size: 26px;font-weight: 700;letter-spacing: -0.02em;line-height: 32px;color: #41637e;font-family: sans-serif;text-align: center\" align=\"center\" id=\"emb-email-header\"><img style=\"border: 0;-ms-interpolation-mode: bicubic;display: block;Margin-left: auto;Margin-right: auto;max-width: 152px\" src="'.base_url().'assets/img/Final_LOGO_fitnessOnline_R.png" alt=\"\" width="152" height="108"></div>';
                         $message .= '              <h4 style="color:#3336FF"> ชื่อผู้ใช้งาน : '.$_POST['member_username'].' </h4>  ';
                         $message .= '              <h4 style="color:#3336FF"> ประเภทผู้ใช้ :  '.$_POST['member_type'].' </h4>';
+<<<<<<< HEAD
                         $message .= '              <h4 style="color:#3336FF"> ประเภทแพคเกจ :  '.$price.' </h4>';
                         $message .= '              <h4 style="color:#3336FF"> เลขที่สมาชิก :  PT0'.$id.' </h4>';
                         $message .= '              <h4 style="color:#3336FF"> วันที่สมัคร : '.$createDate.' </h4>';
@@ -326,6 +333,16 @@ class Auth extends CI_Controller
                         $message .= '              และขออภัยหากท่านได้ทำการชำระเรียบร้อยแล้ว ท่านสามารถแจ้งโอนเงินได้ที่';
                         $message .= '              อีเมล: (E-mail FitnessOnline) หรือ Line@ : (Line@)';
                         $message .= '              *สามารถใช้งานได้ภายใน 30 นาที หลังแจ้งโอนเงินค่ะ* </h4>';
+=======
+                        $message .= '              <h4 style="color:#3336FF"> เลขที่สมาชิก :  10010 </h4>';
+                        $message .= '             <h3 style="color:#3336FF"> จำนวนเงินที่ต้องชำระ '.$_POST['price']. ' บาท </h3> ';
+                        $message .= '              <h4 style="color:#3336FF"> เพื่อให้ท่านได้สามารถใช้งาน fitness Online ได้อย่างเป็นทางการ จึงขออนุญาตแจ้งยอดชำระค่าบริการการสมัครสมาชิกตามรายลเอียดข้างต้น
+                                                        หากอีเมลนี้ไม่ได้รับการตอบรับจากท่านตามรายละเอียดข้างต้นที่กล่าวกลับมาภา
+                                                        ยใน 24 ชม. ทางระบบขอระงับการขอสมัครสมาชิกของท่านโดยไม่ได้แจ้งให้ทราบล่วงหน้า
+                                                        และขออภัยหากท่านได้ทำการชำระเรียบร้อยแล้ว ท่านสามารถแจ้งโอนเงินได้ที่
+                                                        อีเมล: (E-mail FitnessOnline) หรือ Line@ : (Line@)
+                                                        *สามารถใช้งานได้ภายใน 30 นาที หลังแจ้งโอนเงินค่ะ* </h4>';
+>>>>>>> 22faa46959206e06f106fa7ddde96d1d435c3f2a
                         $message .= '              <br> <br>  ';
 
                       //  $message .= '              <p>ขอบคุณสำหรับการสมัครสมาชิกกับ Fitnessonline.co.th! กรุณายืนยัน  <strong> ';
@@ -355,6 +372,7 @@ class Auth extends CI_Controller
                         $this->email->set_mailtype('html');
 
                         //Send mail
+<<<<<<< HEAD
                         if($this->email->send()){
                             $this->session->set_flashdata("success","Your account has been registered. You can check email for confirm");
                         }else{
@@ -362,6 +380,12 @@ class Auth extends CI_Controller
                             $this->session->set_flashdata("error","Can't registration.");
                         }
                             
+=======
+                        //if($this->email->send())
+                           // echo 'SUCCESS';
+                       // else
+                           // echo 'Not SUCCESS';
+>>>>>>> 22faa46959206e06f106fa7ddde96d1d435c3f2a
 
 
                         

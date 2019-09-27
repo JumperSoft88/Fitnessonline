@@ -22,14 +22,10 @@
                     </div>
                     <div class="form-group col-md-6 col-sm-6">
                         <label style="color: #1b29ff;">สมัครสมาชิก :</label>
-                        <label > <?php if($row->price == '800'){
-                                echo 'รายเดือน ';
-                            }elseif ($row->price == '2,200'){
-                                echo 'ราย 3 เดือน ';
-                            }elseif ($row->price == '4,000'){
-                                echo 'ราย 6 เดือน ';
-                            }elseif ($row->price == '9,000'){
-                                echo 'รายปี ';
+                        <label > <?php if($row->price == '3,999'){
+                                echo 'ราย 6 เดือน  ';
+                            }elseif ($row->price == '5,999'){
+                                echo 'รายปี  ';
                             } ?>    <?php echo '(' ?><?php echo $row->price;?><?php echo ')' ?></label>
                     </div>
                     <div class="form-group col-md-6 col-sm-6">

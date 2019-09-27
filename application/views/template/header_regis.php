@@ -37,7 +37,7 @@
 
             <li><?=anchor("welcome/change/thailand","ไทย");?></li>
             <li><?=anchor("welcome/change/english","English");?></li>
-            <li><a href="<?php echo base_url();?>info/contact"><span class="glyphicon glyphicon-log-in"></span> <?=label("strLogin"); ?></a></li>
+            <li><a href="<?php echo base_url();?>auth/login"><span class="glyphicon glyphicon-log-in"></span> <?=label("strLogin"); ?></a></li>
         </ul>
     </div>
 </div>
