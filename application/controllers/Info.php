@@ -11,6 +11,7 @@ class Info extends CI_Controller {
 
         $this->load->helper('url');
         $this->load->model('info_model');
+        $this->load->model('auth_model');
 
     }
 
@@ -592,4 +593,47 @@ class Info extends CI_Controller {
 
     }
 
+    public function update_on_status()
+    { 
+     //   $status= $this->input->get('status'); get param url 
+        $username = $_SESSION['username'];   
+        $data = array(
+            'status_system' => 'off'
+        );
+        
+        $this->auth_model->update_status_system($username,$data);
+        $this->auth_model->update_status_question($username,$data);
+
+        $this->session->set_flashdata("success","You are logged in"); 
+        $this->open_status();
+       
+    }
+
+    public function update_off_status()
+    { 
+     //   $status= $this->input->get('status'); get param url 
+        $username = $_SESSION['username'];  
+        $data = array(
+            'status_system' => 'on'
+        );
+        
+        $this->auth_model->update_status_system($username,$data);
+        $this->auth_model->update_status_question($username,$data);
+        $this->session->set_flashdata("success","You are logged in"); 
+        $this->open_status();
+       
+    }
+
+    public function open_status(){ 
+        $username = $_SESSION['username']; 
+       
+        $user_data = $this->auth_model->get_member($username);
+ 
+      //  echo $user_data[0]->status_system;
+      //  $status_system = $user_data[0]->status_system;
+
+        $this->session->set_userdata('status_system', $user_data[0]->status_system); 
+        $this->session->set_flashdata("status_system",$user_data[0]->status_system); 
+        redirect("info/profile","refresh"); 
+    }
 }

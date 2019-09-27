@@ -75,29 +75,29 @@
 </head>
 
 <body > 
- 
-    <?php if (isset($_SESSION['member_type'])) {  if($_SESSION['member_type'] == 'trainer'){ ?>
+ <!-- *****importance ******* Modal on login 
+    <!?php if (isset($_SESSION['member_type'])) {  if($_SESSION['member_type'] == 'trainer'){ ?>
         <script type="text/javascript">
             $(document).ready(function(){
                 $("#myModal").modal('show');
             });
         </script>
-        <!-- Modal -->
+        
         <div id="myModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <a ><img src="<?php echo base_url(); ?>assets/img/slide05.png" class="img-responsive" style="width:100%" alt="Image"></a>
+                        <a ><img src="<!?php echo base_url(); ?>assets/img/slide05.png" class="img-responsive" style="width:100%" alt="Image"></a>
                     </div>
 
                 </div>
             </div>
         </div>
-
-        <?php
+-->
+        <!--?php
         }
-    }?>
+    }? -->
  
 
 
@@ -204,9 +204,9 @@
 
 
             <br>
-        </div>
+        </div><br><br>
         <div class="col-xs-12 col-md-12">
-            <!--<div class="well well-sm">
+            <div class="well well-sm">
                 <div class="row">
                     <div class="col-xs-12 col-md-6 text-center">
                         <h1 class="rating-num">
@@ -217,7 +217,7 @@
                                         </span><span class="glyphicon glyphicon-star-empty"></span>
                         </div>
                         <div>
-                            <span class="glyphicon glyphicon-user"></span>1,050,008 total
+                            <span class="glyphicon glyphicon-user"></span>2,000 total
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6" >
@@ -252,8 +252,8 @@
                             <div class="col-xs-8 col-md-9">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
-                                         aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                        <span class="sr-only">40%</span>
+                                         aria-valuemin="0" aria-valuemax="100">
+                                        <span class="sr-only"></span>
                                     </div>
                                 </div>
                             </div>
@@ -264,8 +264,8 @@
                             <div class="col-xs-8 col-md-9">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
-                                         aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                        <span class="sr-only">20%</span>
+                                         aria-valuemin="0" aria-valuemax="100" >
+                                        <span class="sr-only"></span>
                                     </div>
                                 </div>
                             </div>
@@ -276,8 +276,8 @@
                             <div class="col-xs-8 col-md-9">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
-                                         aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                        <span class="sr-only">15%</span>
+                                         aria-valuemin="0" aria-valuemax="100" >
+                                        <span class="sr-only"></span>
                                     </div>
                                 </div>
                             </div>
@@ -286,7 +286,7 @@
 
                     </div>
                 </div>
-            </div>-->
+            </div> 
         </div>
 
     </div>
@@ -390,13 +390,31 @@
                 <?php
                 }
                 }?>
- 
+  
+            <?php   
                 
+                if(isset($_SESSION['status_system'])){
+                    if($_SESSION['status_system'] == 'on'){  
+                       
+                    ?>
+                        <input  class="toggle-on-class"  type="checkbox" checked data-toggle="toggle" 
+                            data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"> 
+                    <?php
+                    }else{
+                        ?>
+                         <input  class="toggle-off-class"  type="checkbox" checked data-toggle="toggle" 
+                            data-off="Ready" data-on="Not Ready" data-offstyle="danger" data-onstyle="danger"> 
+                    <?php
+
+                    }
+                }else{
+                    ?>
+                        <input  class="toggle-off-class"  type="checkbox" checked  data-toggle="toggle" 
+                            data-off="Ready" data-on="Not Ready" data-offstyle="danger" data-onstyle="danger"> 
+                    <?php
+                }   
+            ?> 
             
-                <input type="checkbox" href="info/update_status" checked data-toggle="toggle" 
-                data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"> 
-
-
             <table border="0" cellpadding="0" cellspacing="0" align="center" class="table">
                 <?php
                 include ("template/webboard_trainer_info.php");
@@ -466,4 +484,19 @@
 
 </body>
 
+<script>
+  $(function() {
+    $('.toggle-on-class').change(function() {
+   
+       var status = $(this).prop('checked') == true ? 1 : 0; 
+		window.location.href="<?php echo base_url('info/update_on_status'); ?>";
+    })
+
+    $('.toggle-off-class').change(function() {
+   
+   var status = $(this).prop('checked') == true ? 1 : 0; 
+    window.location.href="<?php echo base_url('info/update_off_status'); ?>";
+})
+  })
+</script>
 </html>

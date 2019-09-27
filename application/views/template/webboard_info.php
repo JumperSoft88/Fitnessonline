@@ -49,7 +49,7 @@
 
         <td style="text-align:left"><a href="view_post/<?php echo $row->id;?>"><?php echo $row->topic;?></a></td>
 
-        <?php if(isset($row->status_login) and $row->status_login == 'on'){
+        <?php  if(isset($row->status_system) and $row->status_system == 'on'){
 
          ?>
             <th style="text-align: center" >รับงาน</th>

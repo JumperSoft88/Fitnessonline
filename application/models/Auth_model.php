@@ -131,13 +131,23 @@ class Auth_model extends CI_Model
     }
 
     function get_member($username){
-    $this->db->select('*');
-       $this->db->from('fit_member');
-       $this->db->where($arrayName = array('member_username' => $username ));
-       $query = $this->db->get();
-       $result = $query->result();
+        $this->db->select('*');
+        $this->db->from('fit_member');
+        $this->db->where($arrayName = array('member_username' => $username ));
+        $query = $this->db->get();
+        $result = $query->result();
        
        return $result;
+    }
+
+    function update_status_system($username,$data){ 
+        $this->db->where('member_username',$username);
+        $this->db->update('fit_member', $data); 
+    }
+
+    function update_status_question($member_id,$data){ 
+        $this->db->where('name',$member_id);
+        $this->db->update('fit_questions', $data); 
     }
 
 }
