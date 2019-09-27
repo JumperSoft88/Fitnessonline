@@ -12,6 +12,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/fit_fancybox.js"></script>
 
@@ -71,40 +74,37 @@
     </style>
 </head>
 
-<body >
+<body > 
+ 
+    <?php if (isset($_SESSION['member_type'])) {  if($_SESSION['member_type'] == 'trainer'){ ?>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#myModal").modal('show');
+            });
+        </script>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <a ><img src="<?php echo base_url(); ?>assets/img/slide05.png" class="img-responsive" style="width:100%" alt="Image"></a>
+                    </div>
 
-
-
-<?php if (isset($_SESSION['member_type'])) {  if($_SESSION['member_type'] == 'trainer'){ ?>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#myModal").modal('show');
-        });
-    </script>
-    <!-- Modal -->
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <a href="webboard/index_forum"><img src="<?php echo base_url(); ?>assets/img/slide05.png" class="img-responsive" style="width:100%" alt="Image"></a>
                 </div>
-
             </div>
         </div>
-    </div>
 
-    <?php
-}
-}?>
-
-
+        <?php
+        }
+    }?>
+ 
 
 
 <nav class="navbar navbar-inverse" style="background-image: url(<?php echo base_url(); ?>assets/img/back_header.png)">
     <?php include("template/header_profile.php") ?>
 </nav>
-
+<!-- -->
 <div class="modal hide fade" id="myModal">
     <div class="modal-header">
         <a class="close" data-dismiss="modal">×</a>
@@ -131,30 +131,37 @@
 </div>
 
 <div class="container">
-    <h2>Modal Example</h2>
+  <!--  <h2>Modal Example</h2> -->
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+ <!--   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+    <?php if (isset($_SESSION['first_login'])) {   
+        if($_SESSION['first_login']){?>
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+
             </div>
-
         </div>
-    </div>
+    <?php
+        }
+    }?> 
 
 </div>
 
@@ -373,17 +380,21 @@
 
             <?php
         }else { ?>
-
-            <?php if (isset($_SESSION['member_type'])) {  if($_SESSION['member_type'] == 'trainer'){ ?>
-                <button type="button" style="background-image: url(https://cdn.yborcityonline.com/wp-content/uploads/2016/10/Red-Brick-Background-01-Copy-1170x1500.jpg);" class="btn btn btn-danger" >
-                    <a href="<?php echo base_url();?>webboard/topic" >
-                        <font size="4" style="color: white;"><?=label("strNew"); ?></font>
-                    </a>
-                </button>
+ 
+                <?php if (isset($_SESSION['member_type'])) {  if($_SESSION['member_type'] == 'trainer'){ ?>
+                    <button type="button" style="background-image: url(https://cdn.yborcityonline.com/wp-content/uploads/2016/10/Red-Brick-Background-01-Copy-1170x1500.jpg);" class="btn btn btn-danger" >
+                        <a href="<?php echo base_url();?>webboard/topic" >
+                            <font size="4" style="color: white;"><?=label("strNew"); ?></font>
+                        </a>
+                    </button>
                 <?php
-            }
-            }?>
-
+                }
+                }?>
+ 
+                
+            
+                <input type="checkbox" href="info/update_status" checked data-toggle="toggle" 
+                data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"> 
 
 
             <table border="0" cellpadding="0" cellspacing="0" align="center" class="table">

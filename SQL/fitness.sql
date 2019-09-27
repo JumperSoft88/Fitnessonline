@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `fit_trainer_regis` (
   `tainer_createdDate` date NOT NULL,
   `tainer_modifiedDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+ 
 --
 -- Indexes for dumped tables
 --

@@ -182,21 +182,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="price" >สมัครสมาชิก</label>
                             <div class="col-md-8">
+                               
                                 <label class="radio-inline" for="price" >
-                                    <input type="radio" name="price" id="price" value="800" <?php if($row->price == '800') {?> checked="checked" <?php } ?> >
-                                    รายเดือน 800 บาท
+                                    <input type="radio" name="price" id="price" value="3,999"  <?php if($row->price == '3,999') {?> checked="checked" <?php } ?> >
+                                    ราย 6 เดือน 3,999 บาท
                                 </label>
                                 <label class="radio-inline" for="price" >
-                                    <input type="radio" name="price" id="price" value="2,200"  <?php if($row->price == '2,200') {?> checked="checked" <?php } ?> >
-                                    ราย 3 เดือน 2,200 บาท
-                                </label>
-                                <label class="radio-inline" for="price" >
-                                    <input type="radio" name="price" id="price" value="4,000"  <?php if($row->price == '4,000') {?> checked="checked" <?php } ?> >
-                                    ราย 6 เดือน 4,000 บาท
-                                </label>
-                                <label class="radio-inline" for="price" >
-                                    <input type="radio" name="price" id="price" value="9,000"  <?php if($row->price == '9,000') {?> checked="checked" <?php } ?> >
-                                    รายปี 9,000 บาท
+                                    <input type="radio" name="price" id="price" value="5,999"  <?php if($row->price == '5,999') {?> checked="checked" <?php } ?> >
+                                    รายปี 5,999 บาท
                                 </label>
                             </div>
                         </div>

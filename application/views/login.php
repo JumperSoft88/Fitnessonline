@@ -8,6 +8,30 @@
 	
 <body>
 
+
+<?php  if (isset($_SESSION['member_type'])) {  
+    if($_SESSION['member_type'] == 'trainer'){  if($_SESSION['activeted'] == '0'){?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#myModal").modal('show');
+        });
+    </script>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"> 
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<a >กรุณาชำระค่าบริการสมัครสมาชิก</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
+} }
+}?>
+
 	<!-- Style switcher start -->
 	<div class="style-switch-wrapper">
 		<div class="style-switch-button">
@@ -231,5 +255,7 @@
 		<!--/ Footer end -->
 
 	</div><!-- Body inner end -->
+
+	
 </body>
 </html>

@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 #$config['base_url'] = 'http://www.fitnessonline.co.th/';
-$config['base_url'] = 'http://localhost/fitnessonline_on/';
+$config['base_url'] = 'http://localhost:8181/fitnessOnline/';
 
 /*
 |--------------------------------------------------------------------------

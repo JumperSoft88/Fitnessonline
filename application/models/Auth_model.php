@@ -130,6 +130,16 @@ class Auth_model extends CI_Model
         return $result;
     }
 
+    function get_member($username){
+    $this->db->select('*');
+       $this->db->from('fit_member');
+       $this->db->where($arrayName = array('member_username' => $username ));
+       $query = $this->db->get();
+       $result = $query->result();
+       
+       return $result;
+    }
+
 }
 
 

@@ -50,59 +50,70 @@ class Auth extends CI_Controller
             $user_data = $this->auth_model->check_user_login($username,$password);
 
             //  $user = $query->row();
-
-
+ 
+            
             if (isset($user_data[0]->member_type)) {
 
                 if(isset($user_data[0]->activeted)){
 
-
-
-                    $_SESSION['user_logged'] = TRUE;
                     $_SESSION['username'] = $username;
                     $_SESSION['member_type'] = $user_data[0]->member_type;
-                    $_SESSION['email'] = $user_data[0]->email;
+                    $_SESSION['activeted'] = $user_data[0]->activeted;
 
-                    $_SESSION['type'] = $user_data[0]->member_type;
+                    if($user_data[0]->activeted){
+                        $_SESSION['user_logged'] = TRUE;
+                        $_SESSION['username'] = $username;
+                        $_SESSION['member_type'] = $user_data[0]->member_type;
+                        $_SESSION['email'] = $user_data[0]->email;
 
-                    //echo $_SESSION['member_type'];
+                        $_SESSION['type'] = $user_data[0]->member_type;
+
+                        $_SESSION['first_login'] = TRUE;
+
+                        //echo $_SESSION['member_type'];
 
 
-                    $id= $user_data[0]->member_id;
+                        $id= $user_data[0]->member_id;
 
 
-                    if($_SESSION['member_type'] == 'trainer'){
+                     //   if($_SESSION['member_type'] == 'trainer'){
 
-                        $data = array(
-                            'status_login' => 'on'
+                     //       $data = array(
+                     //           'status_login' => 'on'
+                      //      );
+
+                     //       $this->auth_model->update_status_logon($username,$data);
+                     //   }
+
+                        $this->session->set_flashdata("success","You are logged in");
+
+
+                        $history_data = $arrayName = array(
+                            'username' => $_POST['member_username'],
+                            'email' =>  $user_data[0]->email,
+                            'member_type'  => $user_data[0]->member_type,
+                            'createdDate' => date('Y-m-d H:i:s')
+
                         );
-
-                        $this->auth_model->update_status_logon($username,$data);
-                    }
-
-                    $this->session->set_flashdata("success","You are logged in");
+                        $this->auth_model->insert_history_login($history_data);
 
 
-                    $history_data = $arrayName = array(
-                        'username' => $_POST['member_username'],
-                        'email' =>  $user_data[0]->email,
-                        'member_type'  => $user_data[0]->member_type,
-                        'createdDate' => date('Y-m-d H:i:s')
+                        if($_SESSION['member_type'] == 'trainer'
+                            || $_SESSION['member_type'] == 'ftcenter'
+                            || $_SESSION['member_type'] == 'member'){
 
-                    );
-                    $this->auth_model->insert_history_login($history_data);
-
-
-                    if($_SESSION['member_type'] == 'trainer'
-                        || $_SESSION['member_type'] == 'ftcenter'
-                        || $_SESSION['member_type'] == 'member'){
-
-
-
-                       redirect("info/profile","refresh");
+                        redirect("info/profile","refresh");  
+                        }else{
+                            echo date('Y-m-d H:i:s');
+                            redirect("","refresh");
+                        }
                     }else{
-                        echo date('Y-m-d H:i:s');
-                        redirect("","refresh");
+                        $this->session->set_flashdata("success","Your account has been registered. You can check email for confirm");
+                        redirect("auth/login","refresh");
+
+                        //unset($_SESSION);
+                        //session_destroy();
+                     
                     }
 
                 }else{
@@ -116,6 +127,7 @@ class Auth extends CI_Controller
                 $this->session->set_flashdata("error","No such account exists in database");
             }
 
+           
             
         }
 
@@ -272,12 +284,29 @@ class Auth extends CI_Controller
                         );
                         $this->db->insert('fit_member',$data);
 
+
+
+
                         /* Form email */
 
                         $from_email = "info@fitnessonline.co.th";
 
+                     
+                        $user_data = $this->auth_model->get_member($_POST['member_username']);
+
+                        $id= $user_data[0]->member_id;
+                        $createDate = $user_data[0]->createdDate;
+                        $price = $user_data[0]->price;
+
+                        if($price == '3,999'){
+                            $price = 'PT_set A : ราย 6 เดือน 3,999 บาท ';
+                        }else if($price == '5,999'){
+                            $price = 'PT_set B : รายปี 5,999 บาท';
+                        }
+
                         //Load email library
                         $this->load->library('email');
+
 
                         $message = '<html>';
                         $message .= '<head>';
@@ -287,8 +316,16 @@ class Auth extends CI_Controller
                         $message .= '            <div style=\"font-size: 26px;font-weight: 700;letter-spacing: -0.02em;line-height: 32px;color: #41637e;font-family: sans-serif;text-align: center\" align=\"center\" id=\"emb-email-header\"><img style=\"border: 0;-ms-interpolation-mode: bicubic;display: block;Margin-left: auto;Margin-right: auto;max-width: 152px\" src="'.base_url().'assets/img/Final_LOGO_fitnessOnline_R.png" alt=\"\" width="152" height="108"></div>';
                         $message .= '              <h4 style="color:#3336FF"> ชื่อผู้ใช้งาน : '.$_POST['member_username'].' </h4>  ';
                         $message .= '              <h4 style="color:#3336FF"> ประเภทผู้ใช้ :  '.$_POST['member_type'].' </h4>';
-                        $message .= '             <h3 style="color:#3336FF"> รายเดือน '.$_POST['price']. ' บาท </h3> ';
-                        $message .= '              <h4 style="color:#3336FF"> กรุณาชำระค่าบริการ และส่งหลักฐานยืนยันให้เจ้าหน้าที่ตรวจสอบด้วยนะค่ะ </h4>';
+                        $message .= '              <h4 style="color:#3336FF"> ประเภทแพคเกจ :  '.$price.' </h4>';
+                        $message .= '              <h4 style="color:#3336FF"> เลขที่สมาชิก :  PT0'.$id.' </h4>';
+                        $message .= '              <h4 style="color:#3336FF"> วันที่สมัคร : '.$createDate.' </h4>';
+                        $message .= '             <h3 style="color:#3336FF"> จำนวนเงินที่ต้องชำระ '.$_POST['price']. ' บาท </h3> ';
+                        $message .= '              <h4 style="color:#3336FF"> เพื่อให้ท่านได้สามารถใช้งาน fitness Online ได้อย่างเป็นทางการ จึงขออนุญาตแจ้งยอดชำระค่าบริการการสมัครสมาชิกตามรายลเอียดข้างต้น';
+                        $message .= '              หากอีเมลนี้ไม่ได้รับการตอบรับจากท่านตามรายละเอียดข้างต้นที่กล่าวกลับมา';
+                        $message .= '              ภายใน 24 ชม. ทางระบบขอระงับการขอสมัครสมาชิกของท่านโดยไม่ได้แจ้งให้ทราบล่วงหน้า';
+                        $message .= '              และขออภัยหากท่านได้ทำการชำระเรียบร้อยแล้ว ท่านสามารถแจ้งโอนเงินได้ที่';
+                        $message .= '              อีเมล: (E-mail FitnessOnline) หรือ Line@ : (Line@)';
+                        $message .= '              *สามารถใช้งานได้ภายใน 30 นาที หลังแจ้งโอนเงินค่ะ* </h4>';
                         $message .= '              <br> <br>  ';
 
                       //  $message .= '              <p>ขอบคุณสำหรับการสมัครสมาชิกกับ Fitnessonline.co.th! กรุณายืนยัน  <strong> ';
@@ -309,22 +346,25 @@ class Auth extends CI_Controller
 
                         //echo $message;
 
+                     
+
                         $this->email->from($from_email, 'ยินดีต้อนรับสู่ fitnessonline.co.th');
                         $this->email->to($_POST['email']);
                         $this->email->subject('ยินดีต้อนรับ '.$_POST['member_username'].' เข้าสู่ fitnessonline.com');
                         $this->email->message($message);
                         $this->email->set_mailtype('html');
 
-
-
                         //Send mail
-                        if($this->email->send())
-                            echo 'SUCCESS';
-                        else
-                            echo 'Not SUCCESS';
+                        if($this->email->send()){
+                            $this->session->set_flashdata("success","Your account has been registered. You can check email for confirm");
+                        }else{
+                            show_error($this->email->print_debugger());
+                            $this->session->set_flashdata("error","Can't registration.");
+                        }
+                            
 
 
-                        $this->session->set_flashdata("success","Your account has been registered. You can check email for confirm");
+                        
                         //redirect("auth/register_trainer","refresh");
                     }
 
@@ -339,6 +379,10 @@ class Auth extends CI_Controller
         $lang=$this->session->userdata("lang")==null?"english":$this->session->userdata("lang");
         $this->lang->load($lang,$lang);
         $this->load->view('register_trainer');
+    }
+
+    public function sendEmail(){
+
     }
 
     public function register_fitness_center()
@@ -539,6 +583,11 @@ class Auth extends CI_Controller
 
         }
 
+    }
+
+    public function update_status()
+    {
+        echo "Test";
     }
 
 
