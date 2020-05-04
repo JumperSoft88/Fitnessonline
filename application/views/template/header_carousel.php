@@ -1,35 +1,101 @@
-<!-- Carousel -->
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <div class="item active">
-            <img src="<?php echo base_url(); ?>assets/img/banner01.jpg" alt="First slide" width="1200" height="200">
+ 
+	<!-- Template styles-->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
+	<!-- Responsive styles-->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/responsive.css">
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">
+	<!-- Animation -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/animate.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/owl.theme.css">
+	<!-- Flexslider -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/flexslider.css">
+	<!-- Flexslider -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cd-hero.css"> 
 
-        </div>
-        <div class="item">
-            <img src="<?php echo base_url(); ?>assets/img/slide05.png" alt="Second slide" width="1200" height="200">
-            <!-- Static Header -->
+ 
+<body> 
+	<div class="body-inner"> 
+		<!-- Slider start -->
+		<section id="home" class="no-padding">	<!--cd-hero copy.css -->
 
-        </div>
-        <!--<div class="item">
-            <img src="http://fitnessonline.co.th/fitness/img/slide06.png" alt="Third slide" width="1200" height="200">
+			<div id="main-slide" class="ts-flex-slider"> <!--cd-hero copy.css -->
 
-            <div class="header-text hidden-xs">
-                <div class="col-md-12 text-center"></div>
-            </div>
-        </div>-->
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-            <!--span class="glyphicon glyphicon-chevron-left"></span-->
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-            <!--span class="glyphicon glyphicon-chevron-right"></span-->
-        </a>
-    </div><!-- /carousel -->
-</div>
+				<div class="flexSlideshow flexslider">
+					<ul class="slides">
+						<li>
+							<div class="overlay2"><!--cd-hero copy.css -->
+								<img class="" src="<?php echo base_url(); ?>assets/images/slider/slide01.png" alt="slider">
+							</div>
+							<div class="flex-caption slider-content">
+								<div class="col-md-12 text-center">
+									<h2 class="animated2">
+										Fitness Online The Future!
+									</h2>
+									<h3 class="animated3">
+										We Making Difference To Great Things Possible
+									</h3>
+									<p class="animated4"><a href="#" class="slider btn btn-primary white">Check Now</a></p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="overlay2"> <!--cd-hero copy.css -->
+								<img class="" src="<?php echo base_url(); ?>assets/images/slider/slide02.png" alt="slider">
+							</div>
+							<div class="flex-caption slider-content">
+								<div class="col-md-12 text-center">
+									<h2 class="animated4">
+										How Big Can You Dream?
+									</h2>
+									<h3 class="animated5">
+										We are here to make it happen
+									</h3>		
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="overlay2"> <!--cd-hero copy.css -->
+								<img class="" src="<?php echo base_url(); ?>assets/images/slider/slide03.png" alt="slider">
+							</div>
+							<div class="flex-caption slider-content">
+								<div class="col-md-12 text-center">
+									<h2 class="animated7"> <!--style.css-->
+										Your Challenge is Our Progress
+									</h2>
+									<h3 class="animated8"> <!--style.css-->
+										So, You Don't Need to Go Anywhere Today
+									</h3>		
+									<div class="">
+										<a class="animated4 slider btn btn-primary btn-min-block white" href="#">Get Now</a><a class="animated4 slider btn btn-primary btn-min-block solid" href="#">Live Demo</a>
+									</div>     
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div><!--/ Main slider end -->    	
+		</section> <!--/ Slider end -->
+ 	</div>
+     
+
+	<!-- Javascript Files
+	================================================== -->
+
+	<!-- initialize jQuery Library -->
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
+	<!-- Bootstrap jQuery -->
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
+	<!-- Owl Carousel -->
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/owl.carousel.js"></script> 
+	<!-- Bxslider -->
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script>
+	<!-- Owl Carousel -->
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cd-hero.js"></script> 
+	<!-- Template custom -->
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+	</div><!-- Body inner end -->
+</body>
+</html>
